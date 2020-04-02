@@ -1402,7 +1402,7 @@ $$
 a:H_1 \times H_2 \rightarrow H_1 + H_2
 $$
 
-&emsp;&emsp;证明：定义中的映射是一个满射，所以我们仅需要检验其是否满足单射。为此，我们可以发现 $\text{Ker} \ a=\{(0,0)\}$，我们有 $a(a_1,a_2)=0 \Leftrightarrow a_1+a_2=0 \Leftrightarrow a_1=-a_2$，由于 $a_1 \in H_1, \ a_2 \in H_2$，我们可以发现 $a_1,a_2 \in H_1 \cap H_2=\{0\}$，所以 $a_1=a_2=0$，这证明了 $\text{Ker} \ a=\{(0,0)\}$。
+&emsp;&emsp;证明：定义中的映射是一个满射，证明方式为：令 $h \in H_1+H_2$ 那么存在 $h_1 \in H_1, \ h_2 \in H_2$ 使得 $h=h_1+h_2$。所以对于每一个 $h \in H_1+H_2$ 都可以利用映射 $a$ 对 $h_1h_2 \in H_1 \times H_2$ 进行作用得到，这意味着映射 $a$ 满足满射。除此之外我们还需要检验其是否满足单射。为此，我们可以发现 $\text{Ker} \ a=\{(0,0)\}$，我们有 $a(a_1,a_2)=0 \Leftrightarrow a_1+a_2=0 \Leftrightarrow a_1=-a_2$，由于 $a_1 \in H_1, \ a_2 \in H_2$，我们可以发现 $a_1,a_2 \in H_1 \cap H_2=\{0\}$，所以 $a_1=a_2=0$，这证明了 $\text{Ker} \ a=\{(0,0)\}$。
 
 &emsp;&emsp;在命题1.12的前提下，意味着 $H_1 \cap H_2=\{0\}$，群 $H_1+H_2$ 称作 $H_1$ 和 $H_2$ 的直和，记作 $H_1 \oplus H_2$，那么我们将有同构 $H_1 \times H_2 \cong H_1 \oplus H_2$。
 
@@ -2228,3 +2228,29 @@ $$
 $$
 
 &emsp;&emsp;注意，不像实数或者复数的乘法，通常情况下对于 $n \times n$ 的矩阵 $A$ 与矩阵 $B$ 做乘积运算，其 $AB \neq BA$。
+
+&emsp;&emsp;我们有 $n \times n$ 的矩阵 $A$ 以及 $b \in \mathbb{R}^n$，现在我们尝试求解线性系统 $Ax=b$。假设我们可以找到一个 $n \times n$ 的矩阵 $B$ 满足 $BA^i=e_i, \ i=1,\cdots,n$，其中 $e_i=(0,\cdots,0,1,0,\cdots,0)$ 即仅有第 $i$ 个位置的元素非零。若我们将形如下式的 $n \times n$ 矩阵称为单位矩阵：
+$$
+I_n=
+\left(
+ \begin{matrix}
+   1 & 0 & 0 & \cdots & 0 & 0\\
+   0 & 1 & 0 & \cdots & 0 & 0\\
+   0 & 0 & 1 & \cdots & 0 & 0\\
+   \vdots & \vdots & \vdots & \ddots & \vdots & \vdots\\
+   0 & 0 & 0 & \cdots & 1 & 0\\
+   0 & 0 & 0 & \cdots & 0 & 1\\
+ \end{matrix}
+\right)
+$$
+
+&emsp;&emsp;不难发现，该矩阵的第 $i$ 列就是 $e_i$ 那么上述等式可以表示为 $BA=I_n$。如果 $Ax=b$ 那么在等式两端同时左乘 $B$ 我们可以得到 $B(Ax)=Bb$，不难发现 $B(Ax)=(BA)x=I_nx=x$,所以我们有 $x=Bb$。我们可以验证 $x=Bb$ 实际上就是方程组的解，因为 $A(Bb)=(AB)b=$$I_nb=b$。目前我们并不能通过 $BA=I_n$ 推知 $AB=I_n$，但事实上这是可以证明的。$B$ 矩阵通常被记作 $A^{-1}$ 我们将其称为矩阵 $A$ 的逆矩阵。我们可以发现存在唯一的矩阵 $A^{-1}$ 满足 $AA^{-1}=$$A^{-1}A=I_n$。若方阵 $A$ 存在逆矩阵，我们说矩阵 $A$ 可逆，或者说矩阵 $A$ 非奇异。否则，我们说矩阵 $A$ 奇异。我们在后边将说明方阵可逆 $\Leftrightarrow$ 方阵列向量线性独立 $\Leftrightarrow$ 方阵行列式非零。
+
+&emsp;&emsp;总之，若 $A$ 是一个可逆方阵，那么线性系统 $Ax=b$ 有唯一解 $x=A^{-1}b$。在实际应用中，这不是一个好的求解线性系统的方法，因为求解 $A^{-1}$ 太困难了。一个可行的求解线性系统的方法是高斯消元法，我们将在第七章讨论他。其它求解线性系统 $Ax=b$ 的可行性方法需要利用 $A$ 的因式分解（QR分解、SVD分解），并结合接下来介绍的正交矩阵得到方程组的解。
+
+&emsp;&emsp;给定 $m \times n$ 矩阵 $A=(a_{kl})$, $n \times m$ 矩阵 $A^{\text{T}}=(a_{ij}^{\text{T}})$。矩阵 $A^{\text{T}}$ 的第 $i$ 个行向量是 $A$ 矩阵的第 $i$ 个列向量。这意味着对于 $i=1,\cdots,n$ 以及 $j=1,\cdots,m$ 都有 $a_{ij}^{\text{T}}=a_{ji}$。我们将 $A^{\text{T}}$ 称作 $A$ 的转置矩阵。满足 $QQ^{\text{T}}=Q^{\text{T}}Q=I_n$ 的 $n \times n$ 矩阵 $Q$ 称做正交矩阵。也就是说正交阵 $Q$ 的逆矩阵 $Q^{-1}$ 和他的转置矩阵 $Q^{\text{T}}$ 是相等的。正交阵扮演着非常重要的角色。在几何学中，正交变换是一种保持长度不变的线性变换。线性代数中的一个结论表明任意 $m \times n$ 的矩阵 $A$ 都可写做如下形式：
+$$
+A=V \Sigma U^{\text{T}}
+$$
+
+&emsp;&emsp;其中 $V$ 是一个 $m \times m$ 的正交阵，$U$ 是一个 $n \times n$ 的正交阵，$\Sigma$ 是一个 $m \times n$ 的矩阵，其仅有主对角线元素非零，且主对角线元素为 $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_p$ 其中 $p=\text{min}(m,n)$。我们将 $\sigma_i$ 称为矩阵 $A$ 的奇异值，将分解 $A=V \Sigma U^{\text{T}}$ 称为矩阵 $A$ 的一个奇异值分解或称为SVD分解。
