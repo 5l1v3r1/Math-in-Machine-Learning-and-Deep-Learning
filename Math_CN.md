@@ -1920,19 +1920,19 @@ $$
 
 &emsp;&emsp;例如下式的这种表述方式：
 $$
-x_1u+x_2v+v_3w
+x_1u+x_2v+x_3w
 $$
 
 &emsp;&emsp;其中 $u,v,w$ 均为向量且 $x_is \in \mathbb{R}$ 是标量。形如这样的表达式我们将其称为<font color=#ea4335>线性组合</font>。鉴于这个概念，解线性方程组的问题
 $$
-x_1u+x_2v+v_3w=b
+x_1u+x_2v+x_3w=b
 $$
 
 &emsp;&emsp;其实就是考虑 $b$ 是否能够由 $u,v,w$ 构成的线性组合进行表示。
 
 &emsp;&emsp;现在，若向量 $u,v,w$ 是<font color=#ea4335>线性无关的</font>，即不存在全不为零的三元组 $(x_1,x_2,x_3) \neq (0,0,0)$ 使得
 $$
-x_1u+x_2v+v_3w=0_3
+x_1u+x_2v+x_3w=0_3
 $$
 
 &emsp;&emsp;可以发现，$\mathbb{R}^{3 \times 1}$ 中的任意一个向量都可以写为 $u,v,w$ 的线性组合，这里的 $0_3$ 是一个零向量。
@@ -1951,7 +1951,7 @@ $$
 
 &emsp;&emsp;事实上，每一个向量 $z \in \mathbb{R}^{3 \times 1}$ 可以用线性组合这种独特的方式进行表示。
 $$
-z=x_1u+x_2v+v_3w
+z=x_1u+x_2v+x_3w
 $$
 
 &emsp;&emsp;这是因为如果
@@ -2203,7 +2203,7 @@ $$
 \parallel  \ x \parallel_{2}=\sqrt{x \cdot x}=(x_1^2+ \cdots +x_n^2)^{1/2}
 $$
 
-&emsp;&emsp;上式的计算结果通常用于表示向量的长度，称作欧几里得范数或 $l^2$ 范数。除此之外，我们还能得到不等式 $|x \cdot y| \leq \parallel x \parallel \parallel y \ \parallel$。所以，如果 $x,y \neq 0$ 那么比值 $(x \cdot y)/(\parallel x \parallel \parallel y \parallel)$ 可以被视为向量 $x$ 与 向量 $y$ 夹角的余弦值。更准确地讲，若 $x \cdot y=0$ 那么向量 $x$ 与 $y$ 的夹角为 $\pi/2$，也就是说他们是正交的。矩阵（平方矩阵）$Q$ 也可计算内积，在某种意义上 $\forall \ x,y \in \mathbb{R}^n,$$\langle Qx,Qy \rangle=\langle x,y \rangle$ 他们可以被认为是一种广义旋转。
+&emsp;&emsp;上式的计算结果通常用于表示向量的长度，称作欧几里得范数或 $l^2$ 范数。除此之外，我们还能得到不等式 $|x \cdot y| \leq \parallel x \parallel \parallel y \ \parallel$。所以，如果 $x,y \neq 0$ 那么比值 $(x \cdot y)/(\parallel x \parallel \parallel y \parallel)$ 可以被视为向量 $x$ 与向量 $y$ 夹角的余弦值。更准确地讲，若 $x \cdot y=0$ 那么向量 $x$ 与 $y$ 的夹角为 $\pi/2$，也就是说他们是正交的。矩阵（平方矩阵）$Q$ 也可计算内积，在某种意义上 $\forall \ x,y \in \mathbb{R}^n,$$\langle Qx,Qy \rangle=\langle x,y \rangle$ 他们可以被认为是一种广义旋转。
 
 &emsp;&emsp;我们继续讨论矩阵的相关内容，若 $A$ 是一个包含 $n$ 个列向量 $A^1, \cdots, A^n \in \mathbb{R}^n$ 的 $m \times n$ 矩阵，$B$ 是一个包含 $p$ 个列向量 $B^1, \cdots, B^p \in \mathbb{R}^n$ 的 $n \times p$ 矩阵。我们可以计算得到 $p$ 个列向量 $AB^1,\cdots,AB^p$，且$AB^1,\cdots,AB^p \in \mathbb{R}^m$。这 $p$ 个列向量构成了 $m \times p$ 矩阵，我们将该矩阵记作 $AB$。我们用 $AB^j$ 表示 $AB$ 的第 $j$ 个列向量。$AB^j$ 的第 $i$ 个元素是 $A$ 矩阵的第 $i$ 个行向量与 $B$ 矩阵的第 $j$ 个列向量做内积的计算结果：
 $$
