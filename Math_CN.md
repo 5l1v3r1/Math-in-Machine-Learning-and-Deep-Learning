@@ -2254,3 +2254,59 @@ A=V \Sigma U^{\text{T}}
 $$
 
 &emsp;&emsp;其中 $V$ 是一个 $m \times m$ 的正交阵，$U$ 是一个 $n \times n$ 的正交阵，$\Sigma$ 是一个 $m \times n$ 的矩阵，其仅有主对角线元素非零，且主对角线元素为 $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_p$ 其中 $p=\text{min}(m,n)$。我们将 $\sigma_i$ 称为矩阵 $A$ 的奇异值，将分解 $A=V \Sigma U^{\text{T}}$ 称为矩阵 $A$ 的一个奇异值分解或称为SVD分解。
+
+&emsp;&emsp;我们在这里给出任意矩阵的SVD分解的计算过程。我们以矩阵A为例，其中A的取值为：
+$$
+A=
+\left(
+ \begin{matrix}
+   1 & 1\\
+   1 & 1\\
+   0 & 0
+ \end{matrix}
+\right)
+$$
+1. **计算矩阵U：** 我们首先计算 $AA^\text{T}$,然后求 $AA^\text{T}$ 的特征值及特征向量。Mathematica代码如下:
+
+```Mathematica
+In[1]:= A = {{1, 1}, {1, 1}, {0, 0}};   (*初始化矩阵*)
+        MatrixForm@A                    (*矩阵格式打印*)
+In[2]:= AT = Transpose[A];              (*转置*)
+        MatrixForm@AT
+In[3]:= U = Dot[A, AT];                 (*点积*)
+        MatrixForm@U
+In[4]:= UEigVa = Eigenvalues[U]         (*特征值*)
+Out[4]:=
+        {4, 0, 0}
+In[5]:= UEigVe = Eigenvectors[U];       (*特征向量，矩阵的每一行是一个特征向量*)
+        UEigVe = Normalize /@ UEigVe;   (*特征向量标准化*)
+        MatrixForm@UEigVe
+```
+
+2. **计算矩阵V：** 我们首先计算 $A^\text{T}A$,然后求 $A^\text{T}A$ 的特征值及特征向量。Mathematica代码如下:
+
+```Mathematica
+In[6]:= V = Dot[AT, A];                 (*点积*)
+        MatrixForm@V
+In[7]:= VEigVa = Eigenvalues[V]         (*特征值*)
+Out[7]:=
+        {4, 0}
+In[8]:= VEigVe = Eigenvectors[V];       (*特征向量，矩阵的每一行是一个特征向量*)
+        VEigVe = Normalize /@ VEigVe;   (*特征向量标准化*)
+        MatrixForm@VEigVe
+```
+3. **计算矩阵**  $\Sigma$：将第一或第二步求出的非零特征值从大到小排列后开根号的值即为 $\Sigma$ 矩阵的主对角线元素。Mathematica代码如下:
+
+```Mathematica
+In[9]:= Sigma = Sqrt[VEigVa]            (*特征值开根号*)
+        (*创建对角阵，维度和A一致，主对角线元素为开根号后的特征值，特征值已经从大到小排序*)
+        Sigma = DiagonalMatrix[Sigma, 0, Dimensions[A]];
+        MatrixForm@Sigma
+        (*验证计算结果*)
+In[10]:= Dot[Transpose[UEigVe], Sigma, VEigVe] // MatrixForm
+        (*Mathematica内置函数求解*)
+In[11]:= {U, S, Vt} = SingularValueDecomposition[A];
+         MatrixForm[U]
+         MatrixForm[S]
+         MatrixForm[Vt]
+```
